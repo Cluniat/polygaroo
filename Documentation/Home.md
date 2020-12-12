@@ -10,6 +10,6 @@ Ce projet consiste en la réalisation d'un jeu mobile inspiré du jeu "le loup-g
 
 [Architecture du projet](https://github.com/Cluniat/polygaroo/blob/main/Documentation/Architecture.md)
 
-[Etapes de la gestion du projet]("https://github.com/Cluniat/polygaroo/blob/main/Documentation/Gestion-de-projet.md)
+[Etapes de la gestion du projet](https://github.com/Cluniat/polygaroo/blob/main/Documentation/Gestion-de-projet.md)
 
-[Visuels de l'application mobile]("https://github.com/Cluniat/polygaroo/blob/main/Documentation/Visuels.md)
+[Visuels de l'application mobile](https://github.com/Cluniat/polygaroo/blob/main/Documentation/Visuels.md)
