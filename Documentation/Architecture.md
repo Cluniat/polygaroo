@@ -1,6 +1,6 @@
 # Architecture du projet
 
-![archi-polygaroo](uploads/e84d9ec29cf8312ad32c4f54fa3e805d/archi-polygaroo.jpg)
+![archi-polygaroo](../uploads/e84d9ec29cf8312ad32c4f54fa3e805d/archi-polygaroo.jpg)
 
 ## Architecture évolutive basée sur du Docker.
 Elle comprend les conteneurs Docker suivants : 

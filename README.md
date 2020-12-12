@@ -22,13 +22,6 @@
 
 ### Installations
 
-* Enter your SSH public key into Gitlab project
-* Clone the repo
-```sh
-git clone git@forge.univ-lyon1.fr:polygaroo-team/polygaroo.git
-cd polygaroo
-cp .env.example .env
-```
 * React native dependencies
 You can find it [here](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies-3) 
 It's recommanded to install it without expo.

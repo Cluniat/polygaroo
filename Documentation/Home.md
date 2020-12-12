@@ -1,5 +1,5 @@
 <div align="center">
-<img src="uploads/0fc85af16f316c3eccea7986d0251948/polygaroo.png" width="400" height="400">
+<img src="../uploads/0fc85af16f316c3eccea7986d0251948/polygaroo.png" width="400" height="400">
 <h2>Projet POLYGAROO</h2>
 </div>
 
