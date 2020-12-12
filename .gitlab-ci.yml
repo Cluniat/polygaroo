@@ -1,0 +1,38 @@
+stages:
+  - lint
+  - test
+
+lint_api:
+  stage: lint
+  image: node:11.12
+  cache:
+    paths:
+      - node_modules
+  before_script:
+    - cd api && yarn
+  script:
+    - yarn lint
+
+lint_app:
+  stage: lint
+  image: node:11.12
+  cache:
+    paths:
+      - node_modules
+  before_script:
+    - cd app && yarn
+  script:
+    - yarn lint
+
+test_api:
+  stage: test
+  image: node:11.12
+  services:
+    - mongo:latest
+  cache:
+    paths:
+      - node_modules
+  before_script:
+    - cd api && yarn
+  script:
+    - yarn test

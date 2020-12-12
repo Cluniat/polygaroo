@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  api:
+    image: node:11.12
+    ports:
+      - 3000
+    depends_on:
+      - mongo
+    volumes:
+      - ./api:/usr/api/
+    command: bash -c "cd /usr/api && yarn && yarn nodemon --legacy-watch index.js"
+    labels:
+      - traefik.enable=true
+      - traefik.port=3000
+      - traefik.http.routers.api.rule=Host(`api.${DOMAIN}`,`${API_TUNNEL_DOMAIN}`,`${MY_IP_ADDRESS}`)
+      - traefik.http.routers.api.entrypoints=web
+
+  bo:
+    image: node:11.12
+    ports:
+      - 8080
+    environment:
+      VUE_APP_DOMAIN: ${DOMAIN}
+      CHOKIDAR_USEPOLLING: 1
+    depends_on:
+      - api
+    volumes:
+      - ./bo/polygaroobo:/usr/app/
+    command: bash -c "cd /usr/app && yarn && yarn run serve"
+    labels:
+      - traefik.enable=true
+      - traefik.port=8080
+      - traefik.http.routers.bo.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.bo.entrypoints=web
+
+  mongo:
+    image: mongo
+    restart: always
+    expose:
+      - 27017
+    volumes:
+      - dbdata:/data/db
+    ports:
+      - "127.0.0.1:27017:27017"
+
+  traefik:
+    image: traefik:2.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+      - "443:443"
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  dbdata:

@@ -1,0 +1,268 @@
+openapi: 3.0.0
+info:
+  title: Polygaroo API
+  description: ''
+  version: 1.0.0
+
+servers:
+  - url: api.polygaroo.localhost/api
+
+paths:
+  /signin:
+    post:
+      summary: login a user
+      description: ''
+      tags:
+        - Authenticate
+      parameters:
+        - name: identifier
+          in: body
+          description: ''
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+  /adminsignin:
+    post:
+      summary: login an admin user
+      description: ''
+      tags:
+        - Authenticate
+      parameters:
+        - name: identifier
+          in: body
+          description: ''
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+  /users:
+    get:
+      summary: get list of all users
+      description: you need to be connectedwhith a user admin
+      tags:
+        - Users
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseUsers"
+    post:
+      summary: Create a new user
+      description: ''
+      tags:
+        - Users
+      parameters:
+        - name: identifier
+          in: body
+          description: ''
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+              name:
+                type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+  /setadmin/{userId}:
+    post:
+      summary: toggle a user as admin
+      description: ''
+      tags:
+        - Users
+      parameters:
+        - name: is_admin
+          in: body
+          description: ''
+          schema:
+            type: object
+            properties:
+              is_admin:
+                type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseUsers"
+  /users/{userId}:
+    get:
+      summary: get a given user
+      description: you need to be the connected user or the admin
+      tags:
+        - Users
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseUser"
+    put:
+      summary: edit a given user
+      description: you need to be the connected user or the admin
+      tags:
+        - Users
+      parameters:
+        - name: user
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseUser"
+    delete:
+      summary: delete a specific user
+      description: you need to be the connected user or the admin
+      tags:
+        - Users
+      responses:
+        '204':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmptyResponse"
+  /users/admin/{userId}:
+    put:
+      summary: edit a given user
+      description: you need to be admin
+      tags:
+        - Users
+      parameters:
+        - name: user
+          in: body
+          description: ''
+          schema:
+            $ref: "#/components/schemas/User"
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseUser"
+
+components:
+  schemas:
+    User:
+      properties:
+        _id:
+          type: string
+          uniqueItems: true
+        email:
+          type: string
+          uniqueItems: true
+        password:
+          type: string
+        name:
+          type: string
+          uniqueItems: true
+        is_admin:
+          type: boolean
+        birth_date:
+          type: string
+        historic:
+          type: array
+          items:
+            type: string
+        good_decision:
+          type: array
+          items:
+            type: string
+        wins:
+          type: array
+          items:
+            type: string
+        nb_recale_games:
+          type: integer
+        nb_games:
+          type: integer
+        level:
+          type: number
+      required:
+        - _id
+        - email
+        - password
+        - name
+    EmptyResponse:
+      properties:
+        status:
+          type: integer
+        success:
+          type: boolean
+        message:
+          type: string
+    ResponseUser:
+      properties:
+        status:
+          type: integer
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/User"
+    ResponseUsers:
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+
+

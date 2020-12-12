@@ -1,0 +1,10 @@
+import { StyleSheet } from 'react-native'
+import { ApplicationStyles, Helpers } from 'App/Theme'
+
+export default StyleSheet.create({
+  container: {
+    ...ApplicationStyles.screen.container,
+    ...ApplicationStyles.screen.blackContainer,
+    ...Helpers.colCenter,
+  },
+})

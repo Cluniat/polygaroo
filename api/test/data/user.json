@@ -1,0 +1,6 @@
+{
+  "name": "nametest",
+  "email": "email@test.fr",
+  "password": "passwordtest",
+  "is_admin": false
+}
