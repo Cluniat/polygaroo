@@ -6,10 +6,10 @@
 Ce projet est réalisé dans le cadre du projet CODEV de la 5eme année de la spécialité informatique à Polytech Lyon. 
 Ce projet consiste en la réalisation d'un jeu mobile inspiré du jeu "le loup-garou de Thiercelieux" transposé dans l'univers de Polytech. 
 
-[Règles du jeu](Règles du jeu)
+[Règles du jeu](https://github.com/Cluniat/polygaroo/blob/main/Documentation/R%C3%A8gles-du-jeu.md)
 
-[Architecture du projet](Architecture)
+[Architecture du projet](https://github.com/Cluniat/polygaroo/blob/main/Documentation/Architecture.md)
 
-[Etapes de la gestion du projet](Gestion de projet)
+[Etapes de la gestion du projet]("https://github.com/Cluniat/polygaroo/blob/main/Documentation/Gestion-de-projet.md)
 
-[Visuels de l'application mobile](Visuels)
+[Visuels de l'application mobile]("https://github.com/Cluniat/polygaroo/blob/main/Documentation/Visuels.md)
